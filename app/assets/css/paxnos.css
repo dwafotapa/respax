@@ -1,0 +1,75 @@
+.dropdown-paxnos:hover {
+	border-color: #0380af;
+}
+
+.dropdown-paxnos .panel-body {
+	padding: 0;
+}
+
+.dropdown-paxnos-link {
+	color: inherit;
+	display: block;
+	padding: 15px 35px 15px 40px;
+	position: relative;
+	text-decoration: none;
+}
+
+.dropdown-paxnos-link:hover {
+	color: inherit;
+	text-decoration: none;
+}
+
+.dropdown-paxnos-link .fa-users {
+	margin: auto;
+	position: absolute;
+	top: 0;
+	left: 15px;
+	bottom: 0;
+	width: 15px;
+	height: 14px;
+}
+
+.dropdown-paxnos-link .fa-caret-down {
+	margin: auto;
+	position: absolute;
+	top: 0;
+	right: 15px;
+	bottom: 0;
+	width: 8px;
+	height: 14px;
+}
+
+.summary-paxnos {
+	display: inline-block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	vertical-align: top;
+	white-space: nowrap;
+	width: 100%;
+}
+
+#collapsePaxNos {
+	padding: 0 15px 15px 15px;
+}
+
+#collapsePaxNos hr {
+	margin-top: 0;
+}
+
+.input-group-paxnos {
+	margin-right: -13px;
+	width: 107px !important;
+}
+
+.input-paxnos {
+	padding-left: 6px;
+	padding-right: 6px;
+}
+
+.btn-operation {
+	border-color: transparent;
+}
+
+.btn-operation[disabled] .fa {
+	color: grey;
+}

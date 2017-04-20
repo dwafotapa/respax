@@ -1,0 +1,14 @@
+{
+  "name": "jquery-free",
+  "homepage": "https://github.com/baoxd/jquery-free",
+  "_release": "e6daa487bb",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "e6daa487bb68bed617ac9ccb986a81c717987757"
+  },
+  "_source": "https://github.com/baoxd/jquery-free.git",
+  "_target": "*",
+  "_originalSource": "jquery-free",
+  "_direct": true
+}

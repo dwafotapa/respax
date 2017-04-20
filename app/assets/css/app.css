@@ -1,0 +1,42 @@
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	margin-bottom: 44px;
+}
+
+header, .sub-header, footer {
+	background-color: #0380af;
+}
+
+header {
+	border-bottom: 1px solid #ffffff;
+	color: #ffffff;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.sub-header {
+	color: #ffffff;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+main {
+	padding-top: 15px;
+}
+
+.fa {
+	color: #0380af;
+}
+
+footer {
+	bottom: 0;
+	color: #ffffff;
+	height: 44px;
+	line-height: 44px;
+	position: absolute;
+	width: 100%;
+}

@@ -1,0 +1,57 @@
+<div class="alert alert-info" role="alert" ng-if="vm.displayAlert">
+  <strong>{{availableSeatsNo = vm.getAvailabilitiesForDepartureDate()}} Available Seat{{availableSeatsNo > 1 ? 's' : ''}}</strong>
+</div>
+<label for="paxNos">Number of Passengers:</label>
+<div class="panel panel-default dropdown-paxnos">
+  <div class="panel-body">
+    <a class="dropdown-paxnos-link" href="" data-toggle="collapse" data-target="#collapsePaxNos" ng-click="vm.handleDropdownClick()">
+      <i class="fa fa-users" aria-hidden="true"></i>
+      <span class="summary-paxnos">{{vm.getNumberOfPassengersSummary()}}</span>
+      <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </a>
+    <div class="panel-collapse collapse" id="collapsePaxNos">
+      <hr />
+      <form class="form-horizontal" novalidate>
+        <div class="form-group" ng-repeat="passengerType in vm.passengerTypes">
+          <label for="paxNos{{$index}}" class="col-xs-6">{{passengerType.name}}</label>
+          <div class="col-xs-6">
+            <div class="input-group input-group-paxnos pull-right">
+              <span class="input-group-btn">
+                <button
+                  type="button"
+                  class="btn btn-default btn-operation"
+                  ng-disabled="passengerType.paxNos <= 0"
+                  ng-click="vm.handleMinusButtonClick(passengerType)"
+                >
+                  <i class="fa fa-minus" aria-hidden="true"></i>
+                </button>
+              </span>
+              <input
+                type="text"
+                class="form-control input-paxnos text-center"
+                id="paxNos{{$index}}"
+                maxlength="2"
+                ng-model="passengerType.paxNos"
+                ng-model-options="{ updateOn: 'blur' }"
+                ng-disabled="passengerType.paxNos == 0 && vm.isTotalNumberOfPassengersMaxedOut()"
+                ng-pos-int
+              />
+              <span class="input-group-btn">
+                <!-- inline styling hack: fix input-pax-type's hidden right border -->
+                <button
+                  type="button"
+                  class="btn btn-default btn-operation"
+                  style="margin-left: auto"
+                  ng-disabled="vm.isTotalNumberOfPassengersMaxedOut()"
+                  ng-click="vm.handlePlusButtonClick(passengerType)"
+                >
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
