@@ -18,7 +18,8 @@
 	function PaxNosController($filter) {
 		var vm = this;
 		
-		vm.handleDropdownClick = () => $$('#collapsePaxNos').toggleClass('in');
+		vm.handleDropdownClick = () => $$('#collapsePaxNos').addClass('in');
+		vm.handleDropdownMouseLeave = () => $$('#collapsePaxNos').removeClass('in');
 		vm.handleMinusButtonClick = (passengerType) => passengerType.paxNos--;
 		vm.handlePlusButtonClick = (passengerType) =>	passengerType.paxNos++;
 		vm.getNumberOfPassengersSummary = getNumberOfPassengersSummary;

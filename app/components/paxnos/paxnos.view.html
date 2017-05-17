@@ -2,9 +2,9 @@
   <strong>{{availableSeatsNo = vm.getAvailabilitiesForDepartureDate()}} Available Seat{{availableSeatsNo > 1 ? 's' : ''}}</strong>
 </div>
 <label for="paxNos">Number of Passengers:</label>
-<div class="panel panel-default dropdown-paxnos">
+<div class="panel panel-default dropdown-paxnos" ng-click="vm.handleDropdownClick()" ng-mouseleave="vm.handleDropdownMouseLeave()">
   <div class="panel-body">
-    <a class="dropdown-paxnos-link" href="" data-toggle="collapse" data-target="#collapsePaxNos" ng-click="vm.handleDropdownClick()">
+    <a class="dropdown-paxnos-link" href="" data-toggle="collapse" data-target="#collapsePaxNos">
       <i class="fa fa-users" aria-hidden="true"></i>
       <span class="summary-paxnos">{{vm.getNumberOfPassengersSummary()}}</span>
       <i class="fa fa-caret-down" aria-hidden="true"></i>
