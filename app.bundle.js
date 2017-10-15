@@ -65,14 +65,6 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(8);
-module.exports = angular;
-
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports) {
 
 /*
@@ -154,7 +146,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -523,6 +515,14 @@ function updateLink (link, options, obj) {
 
 	if(oldSrc) URL.revokeObjectURL(oldSrc);
 }
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(8);
+module.exports = angular;
 
 
 /***/ }),
@@ -17651,18 +17651,8 @@ module.exports = function(module) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = DataService;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular__);
-
-
-// angular
-// 	.module('app.core')
-// 	.service('DataService', DataService);
-
 function DataService($http, config) {
-	var vm = this;
-
-	vm.getJsonAssets = (component) => $http.get(config[component]);
+	this.getJsonAssets = (component) => $http.get(config[component]);
 }
 
 /***/ }),
@@ -17677,7 +17667,7 @@ module.exports = "data:application/vnd.ms-fontobject;base64,n04AAEFNAAACAAIABAAA
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularjs_datepicker_index__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularjs_datepicker_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angularjs_datepicker_index__);
@@ -52695,33 +52685,26 @@ $provide.value("$locale", {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = BookingController;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_data_service__ = __webpack_require__(5);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_data_service__ = __webpack_require__(5);
 
 
 
 function BookingController(DataService) {
-	var vm = this;
-
-	vm.today = new Date();
-	vm.departureDate = new Date();
-	vm.handleDepartureDateChange = handleDepartureDateChange;
-
-	DataService.getJsonAssets('PAXTYPES_AND_AVAILS').then(function (res) {
-		vm.availabilities = res.data.availabilities;
-		vm.passengerTypes = res.data.passenger_types;
-		Object(__WEBPACK_IMPORTED_MODULE_1_lodash__["each"])(vm.passengerTypes, (passengerType) => passengerType.paxNos = 0);
+	this.today = new Date();
+	this.departureDate = new Date();
+	DataService.getJsonAssets('PAXTYPES_AND_AVAILS').then((res) => {
+		this.availabilities = res.data.availabilities;
+		this.passengerTypes = res.data.passenger_types;
+		Object(__WEBPACK_IMPORTED_MODULE_0_lodash__["each"])(this.passengerTypes, (passengerType) => passengerType.paxNos = 0);
 	});
-	
-	function handleDepartureDateChange() {
+
+	this.handleDepartureDateChange = () => {
 		// Updates departure date
-		vm.departureDate = new Date(vm.date);
+		this.departureDate = new Date(this.date);
 		// Resets the number of passengers selected
-		Object(__WEBPACK_IMPORTED_MODULE_1_lodash__["each"])(vm.passengerTypes, (passengerType) => passengerType.paxNos = 0);
+		Object(__WEBPACK_IMPORTED_MODULE_0_lodash__["each"])(this.passengerTypes, (passengerType) => passengerType.paxNos = 0);
 	}
 }
 
@@ -52758,7 +52741,7 @@ module.exports = g;
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = PaxNosController;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
@@ -52766,20 +52749,14 @@ module.exports = g;
 
 
 function PaxNosController($filter) {
-	var vm = this;
-	
-	vm.handleDropdownClick = () => document.getElementById('collapsePaxNos').classList.add('in');
-	vm.handleDropdownMouseLeave = () => document.getElementById('collapsePaxNos').classList.remove('in');
-	vm.handleMinusButtonClick = (passengerType) => passengerType.paxNos--;
-	vm.handlePlusButtonClick = (passengerType) =>	passengerType.paxNos++;
-	vm.getNumberOfPassengersSummary = getNumberOfPassengersSummary;
-	vm.isTotalNumberOfPassengersMaxedOut = isTotalNumberOfPassengersMaxedOut;
-	vm.getAvailabilitiesForDepartureDate = getAvailabilitiesForDepartureDate;
-	vm.getTotalNumberOfPassengers = getTotalNumberOfPassengers;
+	this.handleDropdownClick = () => document.getElementById('collapsePaxNos').classList.add('in');
+	this.handleDropdownMouseLeave = () => document.getElementById('collapsePaxNos').classList.remove('in');
+	this.handleMinusButtonClick = (passengerType) => passengerType.paxNos--;
+	this.handlePlusButtonClick = (passengerType) =>	passengerType.paxNos++;
 
-	function getNumberOfPassengersSummary() {
-		var summary = [];
-		Object(__WEBPACK_IMPORTED_MODULE_1_lodash__["each"])(vm.passengerTypes, function (passengerType) {
+	this.getNumberOfPassengersSummary = () => {
+		let summary = [];
+		Object(__WEBPACK_IMPORTED_MODULE_1_lodash__["map"])(this.passengerTypes, function (passengerType) {
 			if (passengerType.paxNos > 0)
 				summary.push(passengerType.name + ' x ' + passengerType.paxNos);
 		});
@@ -52790,32 +52767,32 @@ function PaxNosController($filter) {
 		return summary.join(', ');
 	}
 
-	function isTotalNumberOfPassengersMaxedOut() {
-		var availabilities = vm.getAvailabilitiesForDepartureDate();
-
+	this.isTotalNumberOfPassengersMaxedOut = () => {
+		const availabilities = this.getAvailabilitiesForDepartureDate();
+		
 		if (availabilities > 0) {
-			var totalPaxNos = vm.getTotalNumberOfPassengers();
+			const totalPaxNos = this.getTotalNumberOfPassengers();
 			return totalPaxNos >= availabilities;
 		}
 		
 		return true;
 	}
 
-	function getAvailabilitiesForDepartureDate() {
-		var formattedDepartureDate = $filter('date')(vm.departureDate, 'yyyy-MM-dd');
-		var hasAvailabilities = Object(__WEBPACK_IMPORTED_MODULE_1_lodash__["findKey"])(vm.availabilities, function (value, key) {
+	this.getAvailabilitiesForDepartureDate = () => {
+		const formattedDepartureDate = $filter('date')(this.departureDate, 'yyyy-MM-dd');
+		const hasAvailabilities = Object(__WEBPACK_IMPORTED_MODULE_1_lodash__["findKey"])(this.availabilities, function (value, key) {
 			return key == formattedDepartureDate;
 		});
 
 		if (hasAvailabilities)
-			return vm.availabilities[formattedDepartureDate];
+			return this.availabilities[formattedDepartureDate];
 
 		return 0;
 	}
 
-	function getTotalNumberOfPassengers() {
-		var totalPaxNos = 0;
-		Object(__WEBPACK_IMPORTED_MODULE_1_lodash__["each"])(vm.passengerTypes, function (passengerType) {
+	this.getTotalNumberOfPassengers = () => {
+		let totalPaxNos = 0;
+		Object(__WEBPACK_IMPORTED_MODULE_1_lodash__["each"])(this.passengerTypes, function (passengerType) {
 			totalPaxNos += passengerType.paxNos;
 		});
 		
@@ -52829,10 +52806,6 @@ function PaxNosController($filter) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = ngPosInt;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular__);
-
-
 function ngPosInt() {
 	return {
 		restrict: 'A',
@@ -52842,10 +52815,10 @@ function ngPosInt() {
 
 			function parse(value) {
 				// Replaces all characters but digits with empty space
-				var attemptedValue = value.replace(/[^0-9]/g, '');
+				const attemptedValue = value.replace(/[^0-9]/g, '');
 
 				// Removes any leading zeros
-				var attemptedInt = parseInt(attemptedValue, 10);
+				const attemptedInt = parseInt(attemptedValue, 10);
 
 				// Handles empty inputs
 				if (_.isNaN(attemptedInt)) {
@@ -52856,7 +52829,7 @@ function ngPosInt() {
 				}
 
 				// Checks if availabilities are maxed out
-				var attemptedTotalNumberOfPassengers = scope.$parent.vm.getTotalNumberOfPassengers() - scope.passengerType.paxNos + attemptedInt;
+				const attemptedTotalNumberOfPassengers = scope.$parent.vm.getTotalNumberOfPassengers() - scope.passengerType.paxNos + attemptedInt;
 				if (attemptedTotalNumberOfPassengers <= scope.$parent.vm.getAvailabilitiesForDepartureDate())
 					controller.$setViewValue(attemptedInt.toString());
 				else
@@ -52891,7 +52864,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(2)(content, options);
+var update = __webpack_require__(1)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -52911,7 +52884,7 @@ if(false) {
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(undefined);
+exports = module.exports = __webpack_require__(0)(undefined);
 // imports
 
 
@@ -53055,7 +53028,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(2)(content, options);
+var update = __webpack_require__(1)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -53075,7 +53048,7 @@ if(false) {
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(undefined);
+exports = module.exports = __webpack_require__(0)(undefined);
 // imports
 
 
@@ -53136,7 +53109,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(2)(content, options);
+var update = __webpack_require__(1)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -53156,7 +53129,7 @@ if(false) {
 /* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(undefined);
+exports = module.exports = __webpack_require__(0)(undefined);
 // imports
 
 
@@ -53181,7 +53154,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(2)(content, options);
+var update = __webpack_require__(1)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -53201,7 +53174,7 @@ if(false) {
 /* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(undefined);
+exports = module.exports = __webpack_require__(0)(undefined);
 // imports
 
 
@@ -53226,7 +53199,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(2)(content, options);
+var update = __webpack_require__(1)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -53246,7 +53219,7 @@ if(false) {
 /* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(undefined);
+exports = module.exports = __webpack_require__(0)(undefined);
 // imports
 
 
