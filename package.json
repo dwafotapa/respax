@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "cp -R public build && webpack",
+    "build": "cp -R public/ build/ && webpack",
     "deploy": "gh-pages -d build"
   }
 }
