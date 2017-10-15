@@ -1,13 +1,11 @@
-(function() {
-	'use strict';
-	
-	angular
-		.module('app.core')
-		.service('DataService', DataService);
+import angular from 'angular';
 
-	function DataService($http, config) {
-		var vm = this;
+// angular
+// 	.module('app.core')
+// 	.service('DataService', DataService);
 
-		vm.getJsonAssets = (component) => $http.get(config[component]);
-	}
-})();
+export default function DataService($http, config) {
+	var vm = this;
+
+	vm.getJsonAssets = (component) => $http.get(config[component]);
+}
