@@ -19,6 +19,7 @@ https://dwafotapa.github.io/respax/
 
 ## Installation
 
+#### npm
 ```javascript
 yarn
 ```
@@ -28,6 +29,19 @@ or
 ```javascript
 npm install
 ```
+
+#### Run
+```javascript
+yarn start
+```
+opens a new window in your browser at `localhost:8080`
+
+#### Build
+```javascript
+yarn build
+```
+bundles the app into the build folder.
+
 
 ## Description
 

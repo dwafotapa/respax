@@ -24,7 +24,7 @@
     "webpack-dev-server": "^2.9.1"
   },
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --open",
     "build": "cp -R public/ build/ && webpack",
     "deploy": "gh-pages -d build"
   }
