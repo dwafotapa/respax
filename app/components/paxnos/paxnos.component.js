@@ -1,21 +1,15 @@
 import angular from 'angular';
-import { each, isEmpty, findKey } from 'lodash';
+import { each, map, isEmpty, findKey } from 'lodash';
 
 export default function PaxNosController($filter) {
-	var vm = this;
-	
-	vm.handleDropdownClick = () => document.getElementById('collapsePaxNos').classList.add('in');
-	vm.handleDropdownMouseLeave = () => document.getElementById('collapsePaxNos').classList.remove('in');
-	vm.handleMinusButtonClick = (passengerType) => passengerType.paxNos--;
-	vm.handlePlusButtonClick = (passengerType) =>	passengerType.paxNos++;
-	vm.getNumberOfPassengersSummary = getNumberOfPassengersSummary;
-	vm.isTotalNumberOfPassengersMaxedOut = isTotalNumberOfPassengersMaxedOut;
-	vm.getAvailabilitiesForDepartureDate = getAvailabilitiesForDepartureDate;
-	vm.getTotalNumberOfPassengers = getTotalNumberOfPassengers;
+	this.handleDropdownClick = () => document.getElementById('collapsePaxNos').classList.add('in');
+	this.handleDropdownMouseLeave = () => document.getElementById('collapsePaxNos').classList.remove('in');
+	this.handleMinusButtonClick = (passengerType) => passengerType.paxNos--;
+	this.handlePlusButtonClick = (passengerType) =>	passengerType.paxNos++;
 
-	function getNumberOfPassengersSummary() {
-		var summary = [];
-		each(vm.passengerTypes, function (passengerType) {
+	this.getNumberOfPassengersSummary = () => {
+		let summary = [];
+		map(this.passengerTypes, function (passengerType) {
 			if (passengerType.paxNos > 0)
 				summary.push(passengerType.name + ' x ' + passengerType.paxNos);
 		});
@@ -26,32 +20,32 @@ export default function PaxNosController($filter) {
 		return summary.join(', ');
 	}
 
-	function isTotalNumberOfPassengersMaxedOut() {
-		var availabilities = vm.getAvailabilitiesForDepartureDate();
-
+	this.isTotalNumberOfPassengersMaxedOut = () => {
+		const availabilities = this.getAvailabilitiesForDepartureDate();
+		
 		if (availabilities > 0) {
-			var totalPaxNos = vm.getTotalNumberOfPassengers();
+			const totalPaxNos = this.getTotalNumberOfPassengers();
 			return totalPaxNos >= availabilities;
 		}
 		
 		return true;
 	}
 
-	function getAvailabilitiesForDepartureDate() {
-		var formattedDepartureDate = $filter('date')(vm.departureDate, 'yyyy-MM-dd');
-		var hasAvailabilities = findKey(vm.availabilities, function (value, key) {
+	this.getAvailabilitiesForDepartureDate = () => {
+		const formattedDepartureDate = $filter('date')(this.departureDate, 'yyyy-MM-dd');
+		const hasAvailabilities = findKey(this.availabilities, function (value, key) {
 			return key == formattedDepartureDate;
 		});
 
 		if (hasAvailabilities)
-			return vm.availabilities[formattedDepartureDate];
+			return this.availabilities[formattedDepartureDate];
 
 		return 0;
 	}
 
-	function getTotalNumberOfPassengers() {
-		var totalPaxNos = 0;
-		each(vm.passengerTypes, function (passengerType) {
+	this.getTotalNumberOfPassengers = () => {
+		let totalPaxNos = 0;
+		each(this.passengerTypes, function (passengerType) {
 			totalPaxNos += passengerType.paxNos;
 		});
 		

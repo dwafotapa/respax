@@ -1,5 +1,3 @@
-import angular from 'angular';
-
 export default function ngPosInt() {
 	return {
 		restrict: 'A',
@@ -9,10 +7,10 @@ export default function ngPosInt() {
 
 			function parse(value) {
 				// Replaces all characters but digits with empty space
-				var attemptedValue = value.replace(/[^0-9]/g, '');
+				const attemptedValue = value.replace(/[^0-9]/g, '');
 
 				// Removes any leading zeros
-				var attemptedInt = parseInt(attemptedValue, 10);
+				const attemptedInt = parseInt(attemptedValue, 10);
 
 				// Handles empty inputs
 				if (_.isNaN(attemptedInt)) {
@@ -23,7 +21,7 @@ export default function ngPosInt() {
 				}
 
 				// Checks if availabilities are maxed out
-				var attemptedTotalNumberOfPassengers = scope.$parent.vm.getTotalNumberOfPassengers() - scope.passengerType.paxNos + attemptedInt;
+				const attemptedTotalNumberOfPassengers = scope.$parent.vm.getTotalNumberOfPassengers() - scope.passengerType.paxNos + attemptedInt;
 				if (attemptedTotalNumberOfPassengers <= scope.$parent.vm.getAvailabilitiesForDepartureDate())
 					controller.$setViewValue(attemptedInt.toString());
 				else
